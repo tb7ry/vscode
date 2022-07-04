@@ -721,7 +721,7 @@ class TypeFilterController<T, TFilterData> implements IDisposable {
 			return;
 		}
 
-		const findInput = new FindInput(this.view.getHTMLElement(), this.contextViewProvider, true, { label: 'what' });
+		const findInput = new FindInput(this.view.getHTMLElement(), this.contextViewProvider, false, { label: 'what' });
 		this.findInput.value = findInput;
 
 		findInput.onDidChange(this.onDidChangeValue, this, this.enabledDisposables);
