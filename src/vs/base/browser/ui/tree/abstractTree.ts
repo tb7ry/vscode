@@ -7,7 +7,7 @@ import { IDragAndDropData } from 'vs/base/browser/dnd';
 import { $, append, clearNode, createStyleSheet, hasParentWithClass } from 'vs/base/browser/dom';
 import { StandardKeyboardEvent } from 'vs/base/browser/keyboardEvent';
 import { IContextViewProvider } from 'vs/base/browser/ui/contextview/contextview';
-import { FindInput } from 'vs/base/browser/ui/findinput/findInput';
+import { FindInput, IFindInputStyles } from 'vs/base/browser/ui/findinput/findInput';
 import { IIdentityProvider, IKeyboardNavigationLabelProvider, IListContextMenuEvent, IListDragAndDrop, IListDragOverReaction, IListMouseEvent, IListRenderer, IListVirtualDelegate } from 'vs/base/browser/ui/list/list';
 import { ElementsDragAndDropData } from 'vs/base/browser/ui/list/listView';
 import { IListOptions, IListStyles, isButton, isInputElement, isMonacoEditor, List, MouseController } from 'vs/base/browser/ui/list/listWidget';
@@ -17,7 +17,6 @@ import { distinct, equals, firstOrDefault, range } from 'vs/base/common/arrays';
 import { disposableTimeout } from 'vs/base/common/async';
 import { Codicon } from 'vs/base/common/codicons';
 import { SetMap } from 'vs/base/common/collections';
-import { Color } from 'vs/base/common/color';
 import { Emitter, Event, EventBufferer, Relay } from 'vs/base/common/event';
 import { fuzzyScore, FuzzyScore } from 'vs/base/common/filters';
 import { KeyCode } from 'vs/base/common/keyCodes';
@@ -722,7 +721,7 @@ class TypeFilterController<T, TFilterData> implements IDisposable {
 			return;
 		}
 
-		const findInput = new FindInput(this.view.getHTMLElement(), this.contextViewProvider, true, { label: 'foo', inputBorder: Color.red });
+		const findInput = new FindInput(this.view.getHTMLElement(), this.contextViewProvider, true, { label: 'what' });
 		this.findInput.value = findInput;
 
 		findInput.onDidChange(this.onDidChangeValue, this, this.enabledDisposables);
@@ -820,6 +819,10 @@ class TypeFilterController<T, TFilterData> implements IDisposable {
 		}
 
 		return !FuzzyScore.isDefault(node.filterData as any as FuzzyScore);
+	}
+
+	style(styles: IFindInputStyles): void {
+		this.findInput.value?.style(styles);
 	}
 
 	dispose() {
@@ -1421,6 +1424,8 @@ export abstract class AbstractTree<T, TFilterData, TRef> implements IDisposable 
 		}
 
 		this.styleElement.textContent = content.join('\n');
+
+		this.typeFilterController?.style(styles);
 		this.view.style(styles);
 	}
 

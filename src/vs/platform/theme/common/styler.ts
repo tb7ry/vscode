@@ -220,7 +220,22 @@ export const defaultListStyles: IColorMapping = {
 	listMatchesShadow: widgetShadow,
 	treeIndentGuidesStroke,
 	tableColumnsBorder,
-	tableOddRowsBackgroundColor
+	tableOddRowsBackgroundColor,
+	inputActiveOptionBorder,
+	inputActiveOptionForeground,
+	inputActiveOptionBackground,
+	inputBackground,
+	inputForeground,
+	inputBorder,
+	inputValidationInfoBackground,
+	inputValidationInfoForeground,
+	inputValidationInfoBorder,
+	inputValidationWarningBackground,
+	inputValidationWarningForeground,
+	inputValidationWarningBorder,
+	inputValidationErrorBackground,
+	inputValidationErrorForeground,
+	inputValidationErrorBorder,
 };
 
 export interface IButtonStyleOverrides extends IStyleOverrides {

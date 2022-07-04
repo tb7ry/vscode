@@ -9,6 +9,7 @@ import { DomEmitter, stopEvent } from 'vs/base/browser/event';
 import { IKeyboardEvent, StandardKeyboardEvent } from 'vs/base/browser/keyboardEvent';
 import { Gesture } from 'vs/base/browser/touch';
 import { alert } from 'vs/base/browser/ui/aria/aria';
+import { IFindInputStyles } from 'vs/base/browser/ui/findinput/findInput';
 import { CombinedSpliceable } from 'vs/base/browser/ui/list/splice';
 import { ScrollableElementChangeOptions } from 'vs/base/browser/ui/scrollbar/scrollableElementOptions';
 import { binarySearch, firstOrDefault, range } from 'vs/base/common/arrays';
@@ -945,7 +946,7 @@ export interface IListOptions<T> extends IListOptionsUpdate {
 	readonly alwaysConsumeMouseWheel?: boolean;
 }
 
-export interface IListStyles {
+export interface IListStyles extends IFindInputStyles {
 	listBackground?: Color;
 	listFocusBackground?: Color;
 	listFocusForeground?: Color;
